@@ -2,7 +2,7 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            message: 'Hello Vue!'
+            message: '测试文件'
         }
     }
 }).mount('#app')
