@@ -1,71 +1,92 @@
 /* 参数获取 */
-const root = document.documentElement;
-const body = document.body;
-const svgs = document.querySelectorAll('.mode>.mode_icon');
-const text = document.querySelector('h1');
-const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
-const menu = body.querySelector(".menu");
-const menuItems = menu.querySelectorAll(".menu__item");
-const menuBorder = menu.querySelector(".menu__border");
-let activeItem = menu.querySelector(".active");
-const button = document.querySelector('.mode');
-const active = document.querySelector('active');
+    const root = document.documentElement;
+    const body = document.body;
+    const svgs = document.querySelectorAll('.mode>.mode_icon');
+    const text = document.querySelector('h1');
+    const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
+    const menu = body.querySelector(".menu");
+    const menuItems = menu.querySelectorAll(".menu__item");
+    const menuBorder = menu.querySelector(".menu__border");
+    let activeItem = menu.querySelector(".active");
+    const button = document.querySelector('.mode');
+    const active = document.querySelector('active');
+    const Envelope = document.getElementById('Envelope')
 /* 方法--事件 */
-button.onclick = () => {
-    if (!root.hasAttribute('theme')) { // 检查当前主题
-        root.setAttribute('theme', 'dark');
-        svgs[0].style.display = 'none';
-        svgs[1].style.display = 'block';
-        text.innerText = 'Dark Mode';
-        body.style.backgroundColor = "#1a1a1f";
-    } else {
-        root.removeAttribute('theme'); // 移除根节点theme属性
-        svgs[1].style.display = 'none';
-        svgs[0].style.display = 'block';
-        text.innerText = 'Light Mode';
-        // body.style.backgroundColor = "#ffb457";
-        menuItems.forEach((item, index) => {//标签  index
-            if (!!item.classList.contains("active")) {
-                body.style.backgroundColor = bgColorsBody[index];
+    /* 暗黑模式 */
+        button.onclick = () => {
+            if (!root.hasAttribute('theme')) {
+                root.setAttribute('theme', 'dark');
+                svgs[0].style.display = 'none';
+                svgs[1].style.display = 'block';
+                text.innerText = 'Dark Mode';
+                body.style.backgroundColor = "#1a1a1f";
+            } else {
+                root.removeAttribute('theme');
+                svgs[1].style.display = 'none';
+                svgs[0].style.display = 'block';
+                text.innerText = 'Light Mode';
+                menuItems.forEach((item, index) => {
+                    if (!!item.classList.contains("active")) {
+                        body.style.backgroundColor = bgColorsBody[index];
+                    }
+                })
             }
-            // item.addEventListener("click", () => clickItem(item, index));
+        };
+    /* 菜单切换 */
+        function clickItem(item, index) {
+            menu.style.removeProperty("--timeOut");
+            if (activeItem == item) return;
+            if (activeItem) {
+                activeItem.classList.remove("active");
+            }
+            item.classList.add("active");
+            if (root.hasAttribute('theme')) {
+                root.setAttribute('theme', 'dark');
+                svgs[0].style.display = 'none';
+                svgs[1].style.display = 'block';
+                text.innerText = 'Dark Mode';
+                body.style.backgroundColor = "#1a1a1f";
+            } else {
+                root.removeAttribute('theme');
+                svgs[1].style.display = 'none';
+                svgs[0].style.display = 'block';
+                text.innerText = 'Light Mode';
+                body.style.backgroundColor = bgColorsBody[index];
+                if (index==3) {
+                    $('#Envelope_show').css('display','none');
+                    $('#Envelope_hide').css('display','block');
+                }
+                else if (index ==1) {
+                    $('#love_show').css('display','none');
+                    $('#love_hide').css('display','block');
+                }
+                else{
+                    $('#Envelope_show').css('display','block');
+                    $('#Envelope_hide').css('display','none');
+                    $('#love_show').css('display','block');
+                    $('#love_hide').css('display','none');
+                }
+            }
+            activeItem = item;
+            offsetMenuBorder(activeItem, menuBorder);
+        }
+        function offsetMenuBorder(element, menuBorder) {
+            const offsetActiveItem = element.getBoundingClientRect();
+            const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth  - offsetActiveItem.width) / 2) +  "px";
+            menuBorder.style.transform = `translate3d(${left}, 0 , 0)`;
+        }
+        offsetMenuBorder(activeItem, menuBorder);
+        menuItems.forEach((item, index) => {
+            item.addEventListener("click", () => clickItem(item, index));
         })
+        window.addEventListener("resize", () => {
+            offsetMenuBorder(activeItem, menuBorder);
+            menu.style.setProperty("--timeOut", "none");
+        });
+    /* pc端移动端判断 */
+    function judge() {
+        let str = (navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) ? 'app': 'pc';
+        return str;
     }
-};
-function clickItem(item, index) {
-    menu.style.removeProperty("--timeOut");
-    if (activeItem == item) return;
-    if (activeItem) {
-        activeItem.classList.remove("active");
-    }
-    item.classList.add("active");
-    // body.style.backgroundColor =bgColorsBody[index]
-    if (root.hasAttribute('theme')) { // 检查当前主题
-        root.setAttribute('theme', 'dark');
-        svgs[0].style.display = 'none';
-        svgs[1].style.display = 'block';
-        text.innerText = 'Dark Mode';
-        body.style.backgroundColor = "#1a1a1f";
-    } else {
-        root.removeAttribute('theme'); // 移除根节点theme属性
-        svgs[1].style.display = 'none';
-        svgs[0].style.display = 'block';
-        text.innerText = 'Light Mode';
-        body.style.backgroundColor = bgColorsBody[index];
-    }
-    activeItem = item;
-    offsetMenuBorder(activeItem, menuBorder);
-}
-function offsetMenuBorder(element, menuBorder) {
-    const offsetActiveItem = element.getBoundingClientRect();
-    const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth  - offsetActiveItem.width) / 2) +  "px";
-    menuBorder.style.transform = `translate3d(${left}, 0 , 0)`;
-}
-offsetMenuBorder(activeItem, menuBorder);
-menuItems.forEach((item, index) => {
-    item.addEventListener("click", () => clickItem(item, index));
-})
-window.addEventListener("resize", () => {
-    offsetMenuBorder(activeItem, menuBorder);
-    menu.style.setProperty("--timeOut", "none");
-});
+    console.log(judge()) //pc 或者 app
+    
