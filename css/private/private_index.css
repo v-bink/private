@@ -92,9 +92,21 @@ body{
     stroke-linejoin: round;
     stroke-dasharray: 400;
 }
+.icon_love{
+    stroke: transparent;
+}
 .menu__item.active .icon {
     animation: strok 1.5s reverse;
 }
+#Envelope_show,
+#love_show{
+    display: block;
+}
+#Envelope_hide,
+#love_hide{
+    display: none;
+}
+
 @keyframes strok {
     100% {
         stroke-dashoffset: 400;
