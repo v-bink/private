@@ -84,9 +84,25 @@
             menu.style.setProperty("--timeOut", "none");
         });
     /* pc端移动端判断 */
-    function judge() {
-        let str = (navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) ? 'app': 'pc';
-        return str;
-    }
-    console.log(judge()) //pc 或者 app
+        function judge() {
+            let str = (navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) ? 'app': 'pc';
+            return str;
+        }
+    /* 计算日期之差 */
+        function DateDiff(sDate1,  sDate2){ 
+            var  aDate1, aDate2,  oDate1,  oDate2,  iDays;
+            aDate1  =  sDate1.split("-");
+            oDate1  =  new  Date(aDate1[1]  +  '/'  +  aDate1[2]  +  '/'  +  aDate1[0]);
+            aDate2  =  sDate2.split("-");
+            oDate2  =  new  Date(aDate2[1]  +  '/'  +  aDate2[2]  +  '/'  +  aDate2[0]);
+            iDays  =  parseInt(Math.abs(oDate1  -  oDate2) / 1000 / 60 / 60 / 24 );
+        return  iDays
+        }
+        var starDate = "2023-02-24";
+        var date = new Date()
+        var y = date.getFullYear()
+        var m = (date.getMonth() + 1).toString().padStart(2,'0');
+        var d = date.getDate().toString().padStart(2,'0');
+        var NowDate=`${y}-${m}-${d}`
+        var n = DateDiff(starDate,NowDate); 
     
