@@ -98,22 +98,22 @@
             iDays  =  parseInt(Math.abs(oDate1  -  oDate2) / 1000 / 60 / 60 / 24 );
         return  iDays
         }
-        var starDate = "2023-02-24";
-        var date = new Date()
-        var y = date.getFullYear()
-        var m = (date.getMonth() + 1).toString().padStart(2,'0');
-        var d = date.getDate().toString().padStart(2,'0');
-        var NowDate=`${y}-${m}-${d}`
-        var n = DateDiff(starDate,NowDate); 
-    /* 弹框事件 */
-        function pop() {
-				var notification = new NotificationFx({
-					message : '<div class="ns-thumb"><div class="ns-content"><p><a href="#">Zoe Moulder</a> accepted your invitation.</p></div>',
-					layout : 'other',
-					ttl : 6000,
-					effect : 'thumbslider',
-					type : 'notice', // notice, warning, error or success
-				});
-				notification.show();
+    /* 时间差结果 */   
+        function result() {
+            var date = new Date()
+            var NowDate=`${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`
+            return DateDiff("2023-02-24",NowDate); 
         }
-        pop()
+        console.log(result())
+    /* 弹框事件 */
+        // function pop() {
+		// 		var notification = new NotificationFx({
+		// 			message : '<div class="ns-thumb"><div class="ns-content"><p><a href="#">Zoe Moulder</a> accepted your invitation.</p></div>',
+		// 			layout : 'other',
+		// 			ttl : 6000,
+		// 			effect : 'thumbslider',
+		// 			type : 'notice', // notice, warning, error or success
+		// 		});
+		// 		notification.show();
+        // }
+        // pop()
