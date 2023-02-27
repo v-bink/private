@@ -164,5 +164,24 @@ h1 {
 .mode>.mode_icon:nth-child(2) {
     display: none;
 }
-
+.ns-thumb {
+	position: absolute;
+	z-index: 100;
+	overflow: hidden;
+} .ns-thumb {
+	-webkit-animation-name: animJelly;
+	animation-name: animJelly;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+.ns-thumb {
+	-webkit-animation-direction: reverse;
+	animation-direction: reverse;
+	-webkit-animation-delay: 0.3s;
+	animation-delay: 0.3s;
+}
   

@@ -105,4 +105,15 @@
         var d = date.getDate().toString().padStart(2,'0');
         var NowDate=`${y}-${m}-${d}`
         var n = DateDiff(starDate,NowDate); 
-    
+    /* 弹框事件 */
+        function pop() {
+				var notification = new NotificationFx({
+					message : '<div class="ns-thumb"><div class="ns-content"><p><a href="#">Zoe Moulder</a> accepted your invitation.</p></div>',
+					layout : 'other',
+					ttl : 6000,
+					effect : 'thumbslider',
+					type : 'notice', // notice, warning, error or success
+				});
+				notification.show();
+        }
+        pop()
