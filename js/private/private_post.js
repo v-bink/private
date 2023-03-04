@@ -8,7 +8,7 @@ $(function(){
     	// 将 “data:image\/png;base64,”前缀去除掉，然后将图片的base64编码通过 post请求发送给服务器
         var data = reader.result.replace(/^data:image\/png;base64,/g,"")
         $.ajax({
-            url:"http://127.0.0.1:5000/private/post",
+            url:"http://192.168.1.5:5000/private/post",
             data:{base:data},
             async:false,//是否是异步请求
             cache:false,//是否缓存结果
