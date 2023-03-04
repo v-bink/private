@@ -8,31 +8,9 @@
     const menu = body.querySelector(".menu");
     const menuItems = menu.querySelectorAll(".menu__item");
     let activeItem = menu.querySelector(".active");
-    const button = document.querySelector('.mode');
     const active = document.querySelector('active');
     const Envelope = document.getElementById('Envelope')
 /* 方法--事件 */
-    /* 暗黑模式 */
-        button.onclick = () => {
-            if (!root.hasAttribute('theme')) {
-                root.setAttribute('theme', 'dark');
-                svgs[0].style.display = 'none';
-                svgs[1].style.display = 'block';
-                text.innerText = 'Dark Mode';
-                body.style.backgroundColor = "#1a1a1f";
-            } else {
-                root.removeAttribute('theme');
-                svgs[1].style.display = 'none';
-                svgs[0].style.display = 'block';
-                text.innerText = 'Light Mode';
-                body.style.backgroundColor = "#fff";
-                // menuItems.forEach((item, index) => {
-                //     if (!!item.classList.contains("active")) {
-                //         
-                //     }
-                // })
-            }
-        };
     /* 菜单切换 */
         function clickItem(item, index) {
             menu.style.removeProperty("--timeOut");
@@ -99,3 +77,39 @@
             return DateDiff(undefined,NowDate); 
         }
         var data_time = result()
+    /* 判断时间段 */
+        function NowTime(startTime, endTime){
+            // 获取当前时间
+            const date  = new Date()
+            // 获取当前时间的年月日
+            const dataStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} `
+        
+            // 获取开始时间、结束时间、现在时间的时间戳
+            let startDate = new Date(dataStr + startTime).getTime()
+            let endDate = new Date(dataStr + endTime).getTime()
+            let nowDate = date.getTime()
+            console.log('时间')
+            const s = startDate > endDate // 判断开始时间否大于结束时间
+            if(s) [startDate, endDate] = [endDate, startDate] // 若开始时间否大于结束时间则交换值
+            // 判断现在的时间是否在开始时间和结束时间之间，若s为true则结果取反
+            if(nowDate > startDate && nowDate < endDate){
+                root.removeAttribute('theme');
+                text.innerText = 'Light Mode';
+                body.style.backgroundColor = "#fff";
+                Qmsg.success({
+					content:"现在天亮,关闭夜深模式看清屏幕...",
+					timeout:3000,
+				})
+                return s ? false : true //false
+            }else{
+                root.setAttribute('theme', 'dark');
+                text.innerText = 'Dark Mode';
+                body.style.backgroundColor = "#1a1a1f";
+                Qmsg.success({
+					content:"夜深了,开启夜深模式保护眼睛...",
+					timeout:3000,
+				})
+                return s ? true : false//true
+            }
+        }
+        setInterval(NowTime('18:00','7:00'), 1000*60*60);
