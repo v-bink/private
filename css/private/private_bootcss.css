@@ -1,3 +1,7 @@
 .container-fluid{
     padding-left:0
 }
+.ns-box{
+    width: 100vw;
+    height: 100vh;
+}

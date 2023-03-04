@@ -1,12 +1,12 @@
 /* 参数获取 */
     const root = document.documentElement;
     const body = document.body;
+    const body_style = document.querySelectorAll('.theme-light')
     const svgs = document.querySelectorAll('.mode>.mode_icon');
     const text = document.querySelector('h1');
     const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
     const menu = body.querySelector(".menu");
     const menuItems = menu.querySelectorAll(".menu__item");
-    const menuBorder = menu.querySelector(".menu__border");
     let activeItem = menu.querySelector(".active");
     const button = document.querySelector('.mode');
     const active = document.querySelector('active');
@@ -25,11 +25,12 @@
                 svgs[1].style.display = 'none';
                 svgs[0].style.display = 'block';
                 text.innerText = 'Light Mode';
-                menuItems.forEach((item, index) => {
-                    if (!!item.classList.contains("active")) {
-                        body.style.backgroundColor = bgColorsBody[index];
-                    }
-                })
+                body.style.backgroundColor = "#fff";
+                // menuItems.forEach((item, index) => {
+                //     if (!!item.classList.contains("active")) {
+                //         
+                //     }
+                // })
             }
         };
     /* 菜单切换 */
@@ -51,36 +52,29 @@
                 svgs[1].style.display = 'none';
                 svgs[0].style.display = 'block';
                 text.innerText = 'Light Mode';
-                body.style.backgroundColor = bgColorsBody[index];
-                if (index==3) {
+                body.style.backgroundColor = "#ffffff";
+                if (index==2) {
                     $('#Envelope_show').css('display','none');
                     $('#Envelope_hide').css('display','block');
-                }
-                else if (index ==1) {
-                    $('#love_show').css('display','none');
-                    $('#love_hide').css('display','block');
                 }
                 else{
                     $('#Envelope_show').css('display','block');
                     $('#Envelope_hide').css('display','none');
-                    $('#love_show').css('display','block');
-                    $('#love_hide').css('display','none');
                 }
             }
             activeItem = item;
-            offsetMenuBorder(activeItem, menuBorder);
+            offsetMenuBorder(activeItem);
         }
-        function offsetMenuBorder(element, menuBorder) {
+        function offsetMenuBorder(element) {
             const offsetActiveItem = element.getBoundingClientRect();
-            const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth  - offsetActiveItem.width) / 2) +  "px";
-            menuBorder.style.transform = `translate3d(${left}, 0 , 0)`;
+            const left = Math.floor(offsetActiveItem.left - menu.offsetLeft -  offsetActiveItem.width / 2) +  "px";
         }
-        offsetMenuBorder(activeItem, menuBorder);
+        offsetMenuBorder(activeItem);
         menuItems.forEach((item, index) => {
             item.addEventListener("click", () => clickItem(item, index));
         })
         window.addEventListener("resize", () => {
-            offsetMenuBorder(activeItem, menuBorder);
+            offsetMenuBorder(activeItem);
             menu.style.setProperty("--timeOut", "none");
         });
     /* pc端移动端判断 */
@@ -89,7 +83,7 @@
             return str;
         }
     /* 计算日期之差 */
-        function DateDiff(sDate1,  sDate2){ 
+        function DateDiff(sDate1="2023-02-24",  sDate2){ 
             var  aDate1, aDate2,  oDate1,  oDate2,  iDays;
             aDate1  =  sDate1.split("-");
             oDate1  =  new  Date(aDate1[1]  +  '/'  +  aDate1[2]  +  '/'  +  aDate1[0]);
@@ -102,18 +96,6 @@
         function result() {
             var date = new Date()
             var NowDate=`${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`
-            return DateDiff("2023-02-24",NowDate); 
+            return DateDiff(undefined,NowDate); 
         }
-        console.log(result())
-    /* 弹框事件 */
-        // function pop() {
-		// 		var notification = new NotificationFx({
-		// 			message : '<div class="ns-thumb"><div class="ns-content"><p><a href="#">Zoe Moulder</a> accepted your invitation.</p></div>',
-		// 			layout : 'other',
-		// 			ttl : 6000,
-		// 			effect : 'thumbslider',
-		// 			type : 'notice', // notice, warning, error or success
-		// 		});
-		// 		notification.show();
-        // }
-        // pop()
+        var data_time = result()

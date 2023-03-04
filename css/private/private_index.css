@@ -9,8 +9,9 @@ html *::after {
     box-sizing: inherit;
 }
 /* 普通模式下颜色 */
-:root {
-    --color-bg: #ffb457;
+:root{
+    --color-bg: #fff;
+    /* --color-bg:#fff */
     --color-ch: #30303a;
     --color-btn: #f0f0fa;
 }
@@ -98,15 +99,12 @@ body{
 .menu__item.active .icon {
     animation: strok 1.5s reverse;
 }
-#Envelope_show,
-#love_show{
+#Envelope_show{
     display: block;
 }
-#Envelope_hide,
-#love_hide{
+#Envelope_hide{
     display: none;
 }
-
 @keyframes strok {
     100% {
         stroke-dashoffset: 400;
@@ -184,4 +182,9 @@ h1 {
 	-webkit-animation-delay: 0.3s;
 	animation-delay: 0.3s;
 }
-  
+#app_index{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+}
