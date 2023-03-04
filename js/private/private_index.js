@@ -3,7 +3,6 @@
     const body = document.body;
     const body_style = document.querySelectorAll('.theme-light')
     const svgs = document.querySelectorAll('.mode>.mode_icon');
-    const text = document.querySelector('h1');
     const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
     const menu = body.querySelector(".menu");
     const menuItems = menu.querySelectorAll(".menu__item");
@@ -21,11 +20,9 @@
             item.classList.add("active");
             if (root.hasAttribute('theme')) {
                 root.setAttribute('theme', 'dark');
-                text.innerText = 'Dark Mode';
                 body.style.backgroundColor = "#1a1a1f";
             } else {
                 root.removeAttribute('theme');
-                text.innerText = 'Light Mode';
                 body.style.backgroundColor = "#ffffff";
                 if (index==2) {
                     $('#Envelope_show').css('display','none');
@@ -90,12 +87,10 @@
             // 判断现在的时间是否在开始时间和结束时间之间，若s为true则结果取反
             if(nowDate > startDate && nowDate < endDate){
                 root.removeAttribute('theme');
-                text.innerText = 'Light Mode';
                 body.style.backgroundColor = "#fff";
                 return s ? false : true //false
             }else{
                 root.setAttribute('theme', 'dark');
-                text.innerText = 'Dark Mode';
                 body.style.backgroundColor = "#1a1a1f";
                 return s ? true : false//true
             }
