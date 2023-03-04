@@ -21,14 +21,10 @@
             item.classList.add("active");
             if (root.hasAttribute('theme')) {
                 root.setAttribute('theme', 'dark');
-                svgs[0].style.display = 'none';
-                svgs[1].style.display = 'block';
                 text.innerText = 'Dark Mode';
                 body.style.backgroundColor = "#1a1a1f";
             } else {
                 root.removeAttribute('theme');
-                svgs[1].style.display = 'none';
-                svgs[0].style.display = 'block';
                 text.innerText = 'Light Mode';
                 body.style.backgroundColor = "#ffffff";
                 if (index==2) {
@@ -96,19 +92,11 @@
                 root.removeAttribute('theme');
                 text.innerText = 'Light Mode';
                 body.style.backgroundColor = "#fff";
-                Qmsg.success({
-					content:"现在天亮,关闭夜深模式看清屏幕...",
-					timeout:3000,
-				})
                 return s ? false : true //false
             }else{
                 root.setAttribute('theme', 'dark');
                 text.innerText = 'Dark Mode';
                 body.style.backgroundColor = "#1a1a1f";
-                Qmsg.success({
-					content:"夜深了,开启夜深模式保护眼睛...",
-					timeout:3000,
-				})
                 return s ? true : false//true
             }
         }

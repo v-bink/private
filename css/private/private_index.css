@@ -139,29 +139,6 @@ h1 {
     color: var(--color-ch);
     /* transition: 0.3s; */
 }
-.mode {
-    position: absolute;
-    top: 1rem;
-    right: 0.5rem;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    background-color: var(--color-btn);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.mode>.mode_icon {
-    height: 36px;
-    width: 36px;
-    fill: var(--color-ch);
-    stroke: none;
-}
-.mode>.mode_icon:nth-child(2) {
-    display: none;
-}
 .ns-thumb {
 	position: absolute;
 	z-index: 100;
