@@ -1,14 +1,10 @@
-/* 参数获取 */
+$(function(){
+    /* 参数获取 */
     const root = document.documentElement;
     const body = document.body;
-    const body_style = document.querySelectorAll('.theme-light')
-    const svgs = document.querySelectorAll('.mode>.mode_icon');
-    const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
     const menu = body.querySelector(".menu");
     const menuItems = menu.querySelectorAll(".menu__item");
     let activeItem = menu.querySelector(".active");
-    const active = document.querySelector('active');
-    const Envelope = document.getElementById('Envelope')
 /* 方法--事件 */
     /* 菜单切换 */
         function clickItem(item, index) {
@@ -76,7 +72,6 @@
             const date  = new Date()
             // 获取当前时间的年月日
             const dataStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} `
-        
             // 获取开始时间、结束时间、现在时间的时间戳
             let startDate = new Date(dataStr + startTime).getTime()
             let endDate = new Date(dataStr + endTime).getTime()
@@ -95,4 +90,5 @@
                 return s ? true : false//true
             }
         }
-        setInterval(NowTime('18:00','7:00'), 1000*60*60);
+        setInterval(NowTime('18:00','7:00'), 1000*60);
+})

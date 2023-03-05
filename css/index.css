@@ -159,9 +159,3 @@ h1 {
 	-webkit-animation-delay: 0.3s;
 	animation-delay: 0.3s;
 }
-#app_index{
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-}
