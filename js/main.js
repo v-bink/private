@@ -1,4 +1,3 @@
-$(function(){
     /* 参数获取 */
     const root = document.documentElement;
     const body = document.body;
@@ -76,19 +75,21 @@ $(function(){
             let startDate = new Date(dataStr + startTime).getTime()
             let endDate = new Date(dataStr + endTime).getTime()
             let nowDate = date.getTime()
-            console.log('时间')
             const s = startDate > endDate // 判断开始时间否大于结束时间
+            let i = 0
             if(s) [startDate, endDate] = [endDate, startDate] // 若开始时间否大于结束时间则交换值
             // 判断现在的时间是否在开始时间和结束时间之间，若s为true则结果取反
             if(nowDate > startDate && nowDate < endDate){
+                console.log('明亮')
                 root.removeAttribute('theme');
                 body.style.backgroundColor = "#fff";
                 return s ? false : true //false
             }else{
+                console.log('黑暗')
                 root.setAttribute('theme', 'dark');
                 body.style.backgroundColor = "#1a1a1f";
                 return s ? true : false//true
             }
         }
-        setInterval(NowTime('18:00','7:00'), 1000*60);
-})
+        NowTime('18:00','7:00')
+        setInterval("NowTime('18:00','7:00')", 1000*60);
