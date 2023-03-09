@@ -83,11 +83,15 @@
                 // console.log('明亮')
                 root.removeAttribute('theme');
                 body.style.backgroundColor = "#fff";
+                document.getElementsByClassName('logo')[0].style.display='block'
+                document.getElementsByClassName('logo')[1].style.display='none'
                 return s ? false : true //false
             }else{
                 // console.log('黑暗')
                 root.setAttribute('theme', 'dark');
                 body.style.backgroundColor = "#1a1a1f";
+                document.getElementsByClassName('logo')[1].style.display='block'
+                document.getElementsByClassName('logo')[0].style.display='none'
                 return s ? true : false//true
             }
         }

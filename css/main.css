@@ -14,12 +14,14 @@ html *::after {
     /* --color-bg:#fff */
     --color-ch: #30303a;
     --color-btn: #f0f0fa;
+    --box-show:0px 1px 16px -2px #ccc;
 }
 /* 黑暗模式下颜色 */
 :root[theme='dark'] {
     --color-bg: #1a1a1f;
     --color-ch: #d0d0da;
     --color-btn: #30303a;
+    --box-show:0px 1px 16px -2px #464646;
 }
 :root * {
     /* 过渡动画效果 */
@@ -118,7 +120,7 @@ body{
 #head{
     width: 100vw;
     height: 50px;
-    box-shadow:0px 1px 16px -2px #ccc;
+    box-shadow:var(--box-show);
     position: absolute;
     top: 0;
 }
