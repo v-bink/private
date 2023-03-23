@@ -7,6 +7,7 @@ $(function(){
         type:"get",
         dataType:"json",//服务器返回什么类型数据 text xml javascript json(javascript对象)
         success:function(result){
+            console.log(result)
             var img = new Image();//添加img容器
             $('body').append(img)
             $('body img').addClass('img_get')
