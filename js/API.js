@@ -1,6 +1,6 @@
 $(function(){
     $.ajax({
-        url:"http://127.0.0.1:5002/private/get",//要请求的服务器url
+        url:"https://70i463146e.zicp.fun:443/private/get",//要请求的服务器url
       //  data:{name:'小钟',age:20},//第一个name对应的是后端request.getParameter("name")的name、第二个name对应的是此js中的var name = $("#name").val();的name
         async:false,//是否是异步请求
         cache:false,//是否缓存结果
